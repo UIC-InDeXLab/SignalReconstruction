@@ -80,7 +80,11 @@
   <ItemGroup>
     <ClInclude Include="Direct.h" />
     <ClInclude Include="GaussianElimination.h" />
+    <ClInclude Include="GaussianElimination_original.h" />
     <ClInclude Include="MyMatrix.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

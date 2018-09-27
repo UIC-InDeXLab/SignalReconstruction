@@ -6,7 +6,7 @@ using namespace std;
 #include <stack>
 
 #include "GaussianElimination.h"
-#include "MyMatrix.h"
+//#include "MyMatrix.h"
 
 vector<float> Direct(BMatrix A, vector<float> b, vector<float> xp, bool exact = true)
 {

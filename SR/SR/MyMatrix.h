@@ -98,7 +98,8 @@ Matrix AAT(BMatrix A, bool exact=true)
 				else if (A.rows[i][k1] > A.rows[j][k2]) k2++;
 				else{ tmp++; k1++; k2++;}
 			}
-			t.rows[i].push_back(Cell(i, tmp)); t.rows[j].push_back(Cell(j, tmp));
+			t.rows[i].push_back(Cell(i, tmp)); 
+			t.rows[j].push_back(Cell(j, tmp));
 		}
 	}
 	return t;

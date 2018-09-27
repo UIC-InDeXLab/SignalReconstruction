@@ -1,8 +1,9 @@
-// C++ Implementation for Gauss-Jordan, taken from https://www.geeksforgeeks.org/program-for-gauss-jordan-elimination-method/
+// C++ Implementation for Gauss-Jordan, modified from https://www.geeksforgeeks.org/program-for-gauss-jordan-elimination-method/
 // Elimination Method 
 using namespace std;
 #include<iostream>
-//#include <bits/stdc++.h> 
+
+#include "MyMatrix.h"
 
 #define M 10 
 
@@ -18,18 +19,22 @@ void PrintMatrix(float a[][M], int n)
 
 // function to reduce matrix to reduced 
 // row echelon form. 
-int PerformOperation(float a[][M], int n)
+int PerformOperation(Matrix A, vector<float> b) // solves the equation Ax = b
 {
-	int i, j, k = 0, c, flag = 0, m = 0;
+	int n = A.n, i, j, k = 0, c, flag = 0, m = 0;
 	float pro = 0;
+
+	int* pointers = new int[n];
+	for (i = 0; i < n; i++) pointers[i] = 0;
 
 	// Performing elementary operations 
 	for (i = 0; i < n; i++)
 	{
-		if (a[i][i] == 0)
+		if (A.rows[i][pointers[i]].index > i /*i.e. A[i][i] == 0*/) // note that we use this function for inverse of AAT --> the diagonal is not zero, i.e. we don't need to worry about it :-)
 		{
 			c = 1;
-			while (a[i + c][i] == 0 && (i + c) < n)
+			while (A.rows[i + c][pointers[i + c]].index>i && (i + c) < n)
+			//while (a[i + c][i] == 0 && (i + c) < n)
 				c++;
 			if ((i + c) == n) {
 				flag = 1;
@@ -98,32 +103,3 @@ int CheckConsistency(float a[][M], int n, int flag)
 	}
 	return flag;
 }
-
-/*
-// Driver code 
-int main()
-{
-	float a[M][M] = { { 0, 2, 1, 4 },
-	{ 1, 1, 2, 6 },
-	{ 2, 1, 1, 7 } };
-
-	// Order of Matrix(n) 
-	int n = 3, flag = 0;
-
-	// Performing Matrix transformation 
-	flag = PerformOperation(a, n);
-
-	if (flag == 1)
-		flag = CheckConsistency(a, n, flag);
-
-	// Printing Final Matrix 
-	cout << "Final Augumented Matrix is : " << endl;
-	PrintMatrix(a, n);
-	cout << endl;
-
-	// Printing Solutions(if exist) 
-	PrintResult(a, n, flag);
-
-	return 0;
-}
-*/
