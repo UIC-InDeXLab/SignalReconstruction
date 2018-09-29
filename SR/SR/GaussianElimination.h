@@ -7,11 +7,10 @@ using namespace std;
 
 #include "MyMatrix.h"
 
-int Solve(Matrix A, vector<float> b, float* result) // solves the equation Ax = b
+int Solve(Matrix A, float* b, float* result) // solves the equation Ax = b
 {
 	int n = A.n, i, j, k = 0, kp = 0, c, flag = 0, m = 0;
 	float pro = 0;
-	result = new float[n];
 	int* pointers = new int[n];
 	for (i = 0; i < n; i++) pointers[i] = 0;
 
@@ -21,7 +20,7 @@ int Solve(Matrix A, vector<float> b, float* result) // solves the equation Ax = 
 		if (A.rows[i][pointers[i]].index > i /*i.e. A[i][i] == 0*/) // note that we use this function for inverse of AAT --> the diagonal is not zero, i.e. we don't need to worry about it :-)
 		{
 			c = 1;
-			while (A.rows[i + c][pointers[i + c]].index>i && (i + c) < n)
+			while ((i + c) < n && A.rows[i + c][pointers[i + c]].index>i)
 			//while (a[i + c][i] == 0 && (i + c) < n)
 				c++;
 			if ((i + c) == n) {
@@ -34,15 +33,15 @@ int Solve(Matrix A, vector<float> b, float* result) // solves the equation Ax = 
 			swap(b[i], b[i + c]);
 		}
 
-		result[i] = A.rows[i + c][pointers[i]].value;
+		result[i] = A.rows[i][pointers[i]].value;
 
 		for (j = 0; j < n; j++) {
 			// Excluding all i == j 
 			if (i != j) {
 				k = pointers[i]; kp = pointers[j];
 				// Converting Matrix to reduced row 
-				// echelon form(diagonal matrix) 
-				if (kp = A.rows[j].size() || A.rows[j][kp].index > i) continue; // A[j][i] is already zero
+				// echelon form(diagonal matrix)
+				if (kp == A.rows[j].size() || A.rows[j][kp].index > i) continue; // A[j][i] is already zero
 				// if A[j][i]!=0. Note: A.rows[j][kp].index cannot be less than i
 				float pro = A.rows[j][kp].value / A.rows[i][k].value;
 
@@ -56,7 +55,10 @@ int Solve(Matrix A, vector<float> b, float* result) // solves the equation Ax = 
 						A.rows[j][kp].value -= pro * A.rows[i][k].value;
 						k++; kp++;
 					}
+					b[j] -= b[i] * pro;
+					pointers[j]++;
 			}
+			pointers[i]++;
 		}
 	}
 
