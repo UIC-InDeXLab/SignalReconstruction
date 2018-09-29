@@ -7,29 +7,33 @@ using namespace std;
 
 int main()
 {
-	float a[M][M] = { { 0, 2, 1, 4 },
-	{ 1, 1, 2, 6 },
-	{ 2, 1, 1, 7 } };
+	Matrix A(3, 3);
+	A.rows[0].push_back(Cell(1,2));
+	A.rows[0].push_back(Cell(2, 1));
+	A.rows[1].push_back(Cell(0, 1));
+	A.rows[1].push_back(Cell(1, 1));
+	A.rows[1].push_back(Cell(2, 2));
+	A.rows[2].push_back(Cell(0, 2));
+	A.rows[2].push_back(Cell(1, 1));
+	A.rows[2].push_back(Cell(2, 1));
+	float b[3] = {4,6,7};
+	//float a[M][M] = { { 0, 2, 1, 4 },
+	//{ 1, 1, 2, 6 },
+	//{ 2, 1, 1, 7 } };
 
 	// Order of Matrix(n) 
 	int n = 3, flag = 0;
 
 	// Performing Matrix transformation 
-	flag = PerformOperation(a, n);
-
-	if (flag == 1)
-		flag = CheckConsistency(a, n, flag);
-
-	// Printing Final Matrix 
-	cout << "Final Augumented Matrix is : " << endl;
-	PrintMatrix(a, n);
-	cout << endl;
-
-	// Printing Solutions(if exist) 
-	PrintResult(a, n, flag);
+	float results[3];
+	flag = Solve(A, b, results);
 
 
-	cout << "Done!" << endl;
+	cout << endl << "----Results------" << endl;
+	for (int i = 0; i < 3; i++) cout << results[i] << ", ";
+
+
+	cout << endl << "Done!" << endl;
 	getchar();
 	return 0;
 }

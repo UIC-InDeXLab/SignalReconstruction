@@ -80,6 +80,24 @@ public:
 		m = number_of_columns;
 		rows = new vector<Cell>[n];
 	}
+	void print()
+	{
+		int i, j, k;
+		cout << endl << "---------- A ------------" << endl;
+		for(i = 0; i < n; i++)
+		{
+			k = 0;
+			for (j = 0; j < m; j++)
+				if (k == rows[i].size() || rows[i][k].index > j) cout << "0, ";
+				else
+				{
+					cout << rows[i][k].value << ", ";
+					k++;
+				}
+			cout << endl;
+		}
+		cout << "----------------------" << endl;
+	}
 };
 
 Matrix AAT(BMatrix A, bool exact=true)
