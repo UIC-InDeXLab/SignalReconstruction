@@ -8,11 +8,14 @@ using namespace std;
 #include "GaussianElimination.h"
 //#include "MyMatrix.h"
 
-vector<float> Direct(BMatrix A, vector<float> b, vector<float> xp, bool exact = true)
+float * Direct(BMatrix A, float* b, float* xp, bool exact = true)
 {
-	vector<float> x;
+	int n = A.n, m = A.m;
+	float* x = new float[A.m];
 	Matrix t = AAT(A, exact);
-	vector<float> t2 = Sub(Mul(A, xp),b);
-	vector<float> tmp; // Solve system of linear equations: t*tmp = t2
-	return Sub(xp, Mul(Transpose(A), tmp));
+	float* t2 = Sub(Mul(A, xp), b, n);
+	float* tmp = new float[n]; 
+	// Solve system of linear equations: t*tmp = t2
+	int flag = Solve(t, t2, tmp);
+	return Sub(xp, Mul(Transpose(A), tmp), m);
 }

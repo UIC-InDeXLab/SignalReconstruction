@@ -123,16 +123,16 @@ Matrix AAT(BMatrix A, bool exact=true)
 	return t;
 }
 
-vector<float> Mul(BMatrix A, vector<float> b)
+float* Mul(BMatrix A, float* b)
 {
-	if (b.size() != A.m) { cerr << "Error: The vector length should be the same as the matrix columns!\n"; exit;}
+	// if (b.size() != A.m) { cerr << "Error: The vector length should be the same as the matrix columns!\n"; exit;}
 	int n = A.n;
-	vector<float> output;
+	float * output = new float[n];
 	for (int i = 0; i < n; i++)
 	{
 		float tmp = 0;
 		for (int j = 0; j < A.rows[i].size(); i++) tmp += b[A.rows[i][j]];
-		output.push_back(tmp);
+		output[i] = tmp;
 	}
 	return output;
 }
@@ -146,11 +146,12 @@ BMatrix Transpose(BMatrix A)
 	return At;
 }
 
-vector<float> Sub(vector<float> A, vector<float> B)
+float* Sub(float* A, float* B, int size)
 {
-	if (A.size() != B.size()) {cerr << "Error: the vectors should have equal sizes"; exit;}
-	for (int i = 0; i < A.size(); i++) A[i] -= B[i];
-	return A;
+	float* output = new float[size];
+	//if (A.size() != B.size()) {cerr << "Error: the vectors should have equal sizes"; exit;}
+	for (int i = 0; i < size; i++) output[i] = A[i] - B[i];
+	return output;
 }
 
 
