@@ -7,32 +7,19 @@ using namespace std;
 
 int main()
 {
-	Matrix A(3, 3);
-	A.rows[0].push_back(Cell(1,2));
-	A.rows[0].push_back(Cell(2, 1));
-	A.rows[1].push_back(Cell(0, 1));
-	A.rows[1].push_back(Cell(1, 1));
-	A.rows[1].push_back(Cell(2, 2));
-	A.rows[2].push_back(Cell(0, 2));
-	A.rows[2].push_back(Cell(1, 1));
-	A.rows[2].push_back(Cell(2, 1));
-	float b[3] = {4,6,7};
-	//float a[M][M] = { { 0, 2, 1, 4 },
-	//{ 1, 1, 2, 6 },
-	//{ 2, 1, 1, 7 } };
+	string folder = "data/sd_631_edge_226/";
+	BMatrix A(folder + "a_631.csv");
+	int n = A.n, m = A.m;
+	float* b = new float[n];
+	float* xp = new float[m];
+	ReadVector(folder + "b.csv", n);
+	ReadVector(folder + "gravity.csv", m);
 
-	// Order of Matrix(n) 
-	int n = 3, flag = 0;
+	float * x = Direct(A, b, xp);
 
-	// Performing Matrix transformation 
-	float results[3];
-	flag = Solve(A, b, results);
-
-
-	cout << endl << "----Results------" << endl;
-	for (int i = 0; i < 3; i++) cout << results[i] << ", ";
-
-
+	cout << endl << "--------------- Result -------------" << endl;
+	for (int i = 0; i < m; i++)
+		cout << x[i] << ", ";
 	cout << endl << "Done!" << endl;
 	getchar();
 	return 0;

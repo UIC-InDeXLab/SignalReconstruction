@@ -6,13 +6,13 @@ using namespace std;
 #include <stack>
 
 #include "GaussianElimination.h"
-//#include "MyMatrix.h"
 
 float * Direct(BMatrix A, float* b, float* xp, bool exact = true)
 {
 	int n = A.n, m = A.m;
-	float* x = new float[A.m];
+//	float* x = new float[m];
 	Matrix t = AAT(A, exact);
+	t.print(true);
 	float* t2 = Sub(Mul(A, xp), b, n);
 	float* tmp = new float[n]; 
 	// Solve system of linear equations: t*tmp = t2

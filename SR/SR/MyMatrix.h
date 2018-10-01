@@ -1,3 +1,5 @@
+// Abolfazl Asudeh, http://asudeh.github.io
+
 using namespace std;
 #include <string>
 #include <vector>
@@ -33,39 +35,42 @@ public:
 		m = number_of_columns;
 		rows = new vector<int>[n];
 	}
-	BMatrix(int number_of_rows, int number_of_columns, string filename)
-	{
-		n = number_of_rows;
-		m = number_of_columns;
-		rows = new vector<int>[n];
-		ReadFile(filename);
-	}
-	void ReadFile(string filename)
+	BMatrix(string filename)
 	{
 		vector <vector <string> > data;
 		ifstream infile(filename.c_str());
-		int i = 0;
+		int i = 0, first_line = 1;
 		while (infile)
 		{
 			string s;
 			if (!getline(infile, s)) break;
 			istringstream ss(s);
+			if (first_line)
+			{
+				first_line = 0;
+				getline(ss, s, ',');
+				n = stoi(s);
+				getline(ss, s, ',');
+				m = stoi(s);
+				rows = new vector<int>[n];
+				continue;
+			}
 			vector <string> record;
-
 			while (ss)
 			{
-				string s;
 				if (!getline(ss, s, ',')) break;
 				rows[i].push_back(stoi(s));
 				//record.push_back(s);
 			}
 			//data.push_back(record);
+			i++;
 		}
 		if (!infile.eof())
 		{
 			cerr << "Fooey!\n";
 		}
 	}
+
 };
 
 class Matrix
@@ -80,21 +85,33 @@ public:
 		m = number_of_columns;
 		rows = new vector<Cell>[n];
 	}
-	void print()
+	void print(bool printSparse=false)
 	{
 		int i, j, k;
 		cout << endl << "---------- A ------------" << endl;
-		for(i = 0; i < n; i++)
+		if (!printSparse)
 		{
-			k = 0;
-			for (j = 0; j < m; j++)
-				if (k == rows[i].size() || rows[i][k].index > j) cout << "0, ";
-				else
-				{
-					cout << rows[i][k].value << ", ";
-					k++;
-				}
-			cout << endl;
+			for (i = 0; i < n; i++)
+			{
+				k = 0;
+				for (j = 0; j < m; j++)
+					if (k == rows[i].size() || rows[i][k].index > j) cout << "0, ";
+					else
+					{
+						cout << rows[i][k].value << ", ";
+						k++;
+					}
+				cout << endl;
+			}
+		}
+		else
+		{
+			for (i = 0; i < n; i++)
+			{
+				for (j = 0; j < rows[i].size(); j++)
+					cout << rows[i][j].index << ":" << rows[i][j].value << "; ";
+				cout << endl;
+			}
 		}
 		cout << "----------------------" << endl;
 	}
@@ -107,7 +124,7 @@ Matrix AAT(BMatrix A, bool exact=true)
 	for (int i = 0; i < n; i++)
 	{
 		t.rows[i].push_back(Cell(i, A.rows[i].size()));
-		for (int j = i + 1; i < n; j++)
+		for (int j = i + 1; j < n; j++)
 		{
 			float tmp = 0; int k1 = 0, k2 = 0;
 			while (k1 < A.rows[i].size() && k2 < A.rows[j].size())
@@ -116,8 +133,11 @@ Matrix AAT(BMatrix A, bool exact=true)
 				else if (A.rows[i][k1] > A.rows[j][k2]) k2++;
 				else{ tmp++; k1++; k2++;}
 			}
-			t.rows[i].push_back(Cell(i, tmp)); 
-			t.rows[j].push_back(Cell(j, tmp));
+			if (tmp)
+			{
+				t.rows[i].push_back(Cell(j, tmp));
+				t.rows[j].push_back(Cell(i, tmp));
+			}
 		}
 	}
 	return t;
@@ -154,7 +174,20 @@ float* Sub(float* A, float* B, int size)
 	return output;
 }
 
-
+float* ReadVector(string filename, int len)
+{
+	float* output = new float[len];
+	ifstream infile(filename.c_str());
+	string s;
+	getline(infile, s);
+	istringstream ss(s);
+	for (int i = 0; i < len && ss;i++)
+	{
+		if (!getline(ss, s, ',')) break;
+		output[i] = stof(s);
+	}
+	return output;
+}
 
 
 
