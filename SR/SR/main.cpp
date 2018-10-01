@@ -7,13 +7,12 @@ using namespace std;
 
 int main()
 {
-	string folder = "data/sd_631_edge_226/";
-	BMatrix A(folder + "a_631.csv");
+	string folder = "data/sample/";
+	BMatrix A(folder + "a.txt");
 	int n = A.n, m = A.m;
-	float* b = new float[n];
-	float* xp = new float[m];
-	ReadVector(folder + "b.csv", n);
-	ReadVector(folder + "gravity.csv", m);
+	float* b = ReadVector(folder + "b.txt", n);
+	float* xp = ReadVector(folder + "xp.txt", m);
+	
 
 	float * x = Direct(A, b, xp);
 

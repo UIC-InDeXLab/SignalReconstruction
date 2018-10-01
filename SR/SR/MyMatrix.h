@@ -150,9 +150,8 @@ float* Mul(BMatrix A, float* b)
 	float * output = new float[n];
 	for (int i = 0; i < n; i++)
 	{
-		float tmp = 0;
-		for (int j = 0; j < A.rows[i].size(); i++) tmp += b[A.rows[i][j]];
-		output[i] = tmp;
+		output[i] = 0;
+		for (int j = 0; j < A.rows[i].size(); j++) output[i] += b[A.rows[i][j]];
 	}
 	return output;
 }
@@ -162,7 +161,7 @@ BMatrix Transpose(BMatrix A)
 	BMatrix At(A.m, A.n);
 	for (int i = 0; i < A.n; i++)
 		for (int j = 0; j < A.rows[i].size(); j++)
-			At.rows[j].push_back(i);
+			At.rows[A.rows[i][j]].push_back(i);
 	return At;
 }
 
