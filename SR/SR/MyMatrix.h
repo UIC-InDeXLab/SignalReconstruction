@@ -206,8 +206,8 @@ Matrix AAT_approx(BMatrix A, float th)
 		for (j = i + 1; j < validIndices.size(); j++)
 		{
 			kp = validIndices[j];
-			float v = SIM(A.rows[k], A.rows[j], th, log(A.m));
-			if (v == 0) continue;
+			float v = SIM(A.rows[k], A.rows[j], th, log(A.m), A.m);
+			if (!v) continue;
 			t.rows[k].push_back(Cell(kp, v));
 			t.rows[kp].push_back(Cell(k, v));
 		}
@@ -216,22 +216,33 @@ Matrix AAT_approx(BMatrix A, float th)
 }
 
 
-float SIM(vector<int>& a, vector<int>& b,float th, float k /*switch threshold*/)
+float SIM(vector<int>& a, vector<int>& b,float th, float k /*switch threshold*/, int m)
 {
-	int i, j, k,k1,k2; float tmp;
+	int i, j, k,k1,k2,hk; float tmp;
 	if (a.size() < k || b.size() < k) // apply threshold-based
 	{
 		tmp = 0; k1 = 0; k2 = 0;
-		while (k1 < A.rows[i].size() && k2 < A.rows[j].size())
+		while (k1 < a.size() && k2 < b.size())
 		{
-			if (A.rows[i][k1] < A.rows[j][k2]) k1++;
-			else if (A.rows[i][k1] > A.rows[j][k2]) k2++;
+			if (a[k1] < b[k2]) k1++;
+			else if (a[k1] > b[k2]) k2++;
 			else{ tmp++; k1++; k2++;}
 		}
 		return tmp;
 	}
-	
-	return 0;
+	tmp = 0; k1 = 0; k2 = 0;
+	while (k1 < k && k2 < k)
+	{
+		if (a[k1] < b[k2]) k1++;
+		else if (a[k1] > b[k2]) k2++;
+		else{ tmp++; k1++; k2++; }
+	}
+	k1 = 0; k2 = 0;
+	for(i=0;i<k;i++)
+		if (a[k1] < b[k2]) { hk = a[k1]; k1++; }
+		else if (a[k1] > b[k2]) { hk = b[k2]; k2++; }
+		else { hk = b[k2]; k1++;  k2++;}
+	return (tmp / k)*((k - 1) / hk)*m;
 }
 
 
