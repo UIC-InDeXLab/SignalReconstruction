@@ -9,6 +9,7 @@ using namespace std;
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <cmath>
 
 class Cell
 {
@@ -117,32 +118,6 @@ public:
 	}
 };
 
-Matrix AAT(BMatrix A, bool exact=true)
-{
-	int n = A.n;
-	Matrix t(n, n);
-	for (int i = 0; i < n; i++)
-	{
-		t.rows[i].push_back(Cell(i, A.rows[i].size()));
-		for (int j = i + 1; j < n; j++)
-		{
-			float tmp = 0; int k1 = 0, k2 = 0;
-			while (k1 < A.rows[i].size() && k2 < A.rows[j].size())
-			{
-				if (A.rows[i][k1] < A.rows[j][k2]) k1++;
-				else if (A.rows[i][k1] > A.rows[j][k2]) k2++;
-				else{ tmp++; k1++; k2++;}
-			}
-			if (tmp)
-			{
-				t.rows[i].push_back(Cell(j, tmp));
-				t.rows[j].push_back(Cell(i, tmp));
-			}
-		}
-	}
-	return t;
-}
-
 float* Mul(BMatrix A, float* b)
 {
 	// if (b.size() != A.m) { cerr << "Error: The vector length should be the same as the matrix columns!\n"; exit;}
@@ -180,7 +155,7 @@ float* ReadVector(string filename, int len)
 	string s;
 	getline(infile, s);
 	istringstream ss(s);
-	for (int i = 0; i < len && ss;i++)
+	for (int i = 0; i < len && ss; i++)
 	{
 		if (!getline(ss, s, ',')) break;
 		output[i] = stof(s);
@@ -188,8 +163,68 @@ float* ReadVector(string filename, int len)
 	return output;
 }
 
+Matrix AAT(BMatrix A, bool exact = true, float th = 0)
+{
+	if (!exact) return AAT_approx(A, th);
+	int n = A.n;
+	Matrix t(n, n);
+	for (int i = 0; i < n; i++)
+	{
+		t.rows[i].push_back(Cell(i, A.rows[i].size()));
+		for (int j = i + 1; j < n; j++)
+		{
+			float tmp = 0; int k1 = 0, k2 = 0;
+			while (k1 < A.rows[i].size() && k2 < A.rows[j].size())
+			{
+				if (A.rows[i][k1] < A.rows[j][k2]) k1++;
+				else if (A.rows[i][k1] > A.rows[j][k2]) k2++;
+				else{ tmp++; k1++; k2++;}
+			}
+			if (tmp)
+			{
+				t.rows[i].push_back(Cell(j, tmp));
+				t.rows[j].push_back(Cell(i, tmp));
+			}
+		}
+	}
+	return t;
+}
+
+Matrix AAT_approx(BMatrix A, float th)
+{
+	int n = A.n,i,j,k,kp;
+	Matrix t(n, n);
+	vector<int> validIndices;
+	for (i = 0; i < n; i++)
+		if (A.rows[i].size() < th) t.rows[i].push_back(Cell(i, A.rows[i].size()));
+		else
+			validIndices.push_back(i);
+	for (i = 0; i < validIndices.size(); i++)
+	{
+		k = validIndices[i];
+		t.rows[k].push_back(Cell(k, A.rows[k].size()));
+		for (j = i + 1; j < validIndices.size(); j++)
+		{
+			kp = validIndices[j];
+			float v = SIM(A.rows[k], A.rows[j], th, log(A.m));
+			if (v == 0) continue;
+			t.rows[k].push_back(Cell(kp, v));
+			t.rows[kp].push_back(Cell(k, v));
+		}
+	}
+	return t;
+}
 
 
+float SIM(vector<int>& a, vector<int>& b,float th, float k /*switch threshold*/)
+{
+	int i, j, k;
+	if (a.size() < k || b.size() < k) // apply threshold-based
+	{
+		int c = 0;
+	}
+	return 0;
+}
 
 
 

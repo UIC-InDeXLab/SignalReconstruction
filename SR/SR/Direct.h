@@ -7,10 +7,10 @@ using namespace std;
 
 #include "GaussianElimination.h"
 
-float * Direct(BMatrix A, float* b, float* xp, bool exact = true)
+float * Direct(BMatrix A, float* b, float* xp, bool exact = true, float th=0)
 {
 	int n = A.n, m = A.m, i;
-	Matrix t = AAT(A, exact);
+	Matrix t = AAT(A, exact, th);
 	//t.print(true);
 	float* t2 = Sub(Mul(A, xp), b, n);
 	float* tmp = new float[n]; 
@@ -42,3 +42,4 @@ return 0;
 }
 Output to compare with: 2.96589, 1.00147, 0.02, 1.00147, 1.03116, 0.0326316, 1.96589,
 */
+
