@@ -218,13 +218,75 @@ Matrix AAT_approx(BMatrix A, float th)
 
 float SIM(vector<int>& a, vector<int>& b,float th, float k /*switch threshold*/)
 {
-	int i, j, k;
+	int i, j, k,k1,k2; float tmp;
 	if (a.size() < k || b.size() < k) // apply threshold-based
 	{
-		int c = 0;
+		tmp = 0; k1 = 0; k2 = 0;
+		while (k1 < A.rows[i].size() && k2 < A.rows[j].size())
+		{
+			if (A.rows[i][k1] < A.rows[j][k2]) k1++;
+			else if (A.rows[i][k1] > A.rows[j][k2]) k2++;
+			else{ tmp++; k1++; k2++;}
+		}
+		return tmp;
 	}
+	
 	return 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
