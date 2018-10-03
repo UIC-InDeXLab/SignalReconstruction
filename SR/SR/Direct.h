@@ -11,7 +11,7 @@ float * Direct(BMatrix A, float* b, float* xp, bool exact = true, float th=0)
 {
 	int n = A.n, m = A.m, i;
 	Matrix t = AAT(A, exact, th);
-	//t.print(true);
+	t.print(true);
 	float* t2 = Sub(Mul(A, xp), b, n);
 	float* tmp = new float[n]; 
 	// Solve system of linear equations: t*tmp = t2

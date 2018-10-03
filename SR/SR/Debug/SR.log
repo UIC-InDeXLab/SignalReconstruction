@@ -1,13 +1,20 @@
-﻿Build started 10/1/2018 6:47:44 PM.
+﻿Build started 10/3/2018 5:24:09 AM.
      1>Project "D:\GitClones\SignalReconstruction\SR\SR\SR.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
          main.cpp
-     1>d:\gitclones\signalreconstruction\sr\sr\mymatrix.h(111): warning C4018: '<' : signed/unsigned mismatch
-     1>d:\gitclones\signalreconstruction\sr\sr\mymatrix.h(126): warning C4244: 'argument' : conversion from 'unsigned int' to 'float', possible loss of data
-     1>d:\gitclones\signalreconstruction\sr\sr\mymatrix.h(130): warning C4018: '<' : signed/unsigned mismatch
-     1>d:\gitclones\signalreconstruction\sr\sr\mymatrix.h(154): warning C4018: '<' : signed/unsigned mismatch
-     1>d:\gitclones\signalreconstruction\sr\sr\mymatrix.h(163): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\gitclones\signalreconstruction\sr\sr\mymatrix.h(112): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\gitclones\signalreconstruction\sr\sr\mymatrix.h(129): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\gitclones\signalreconstruction\sr\sr\mymatrix.h(138): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\gitclones\signalreconstruction\sr\sr\mymatrix.h(172): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\gitclones\signalreconstruction\sr\sr\mymatrix.h(168): warning C4101: 'j' : unreferenced local variable
+     1>d:\gitclones\signalreconstruction\sr\sr\mymatrix.h(201): warning C4244: 'argument' : conversion from 'unsigned int' to 'float', possible loss of data
+     1>d:\gitclones\signalreconstruction\sr\sr\mymatrix.h(204): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\gitclones\signalreconstruction\sr\sr\mymatrix.h(207): warning C4244: 'argument' : conversion from 'unsigned int' to 'float', possible loss of data
+     1>d:\gitclones\signalreconstruction\sr\sr\mymatrix.h(208): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\gitclones\signalreconstruction\sr\sr\mymatrix.h(211): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>d:\gitclones\signalreconstruction\sr\sr\mymatrix.h(227): warning C4244: 'argument' : conversion from 'unsigned int' to 'float', possible loss of data
+     1>d:\gitclones\signalreconstruction\sr\sr\mymatrix.h(231): warning C4018: '<' : signed/unsigned mismatch
      1>d:\gitclones\signalreconstruction\sr\sr\gaussianelimination.h(49): warning C4018: '<' : signed/unsigned mismatch
      1>d:\gitclones\signalreconstruction\sr\sr\direct.h(12): warning C4101: 'i' : unreferenced local variable
        Link:
@@ -17,4 +24,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:01.44
+Time Elapsed 00:00:01.26
