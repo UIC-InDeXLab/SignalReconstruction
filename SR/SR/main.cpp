@@ -13,7 +13,7 @@ int main()
 	float* b = ReadVector(folder + "b.txt", n);
 	float* xp = ReadVector(folder + "xp.txt", m);
 	
-	float * x = Direct(A, b, xp);
+	float * x = Direct(A, b, xp,false);
 
 	cout << endl << "--------------- Result -------------" << endl;
 	for (int i = 0; i < m; i++)
