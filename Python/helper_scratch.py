@@ -14,9 +14,9 @@ def connect_to_db():
     return c, conn
 
 
-def graph_open():
+def graph_open(file_name_1):
     G = nx.Graph()
-    with open('p2p-Gnutella04_Nodes_10876_edges_39994.txt', 'r') as f:
+    with open(file_name_1, 'r') as f:
         for line in f:
             l = [each.strip() for each in line.strip().split('\t')]
             G.add_edge(l[0], l[1])
@@ -66,16 +66,36 @@ class EdgeNames:
             raise Exception
 
     def total_traffic(self):
-        return [sum(i)for i in zip(*list(self.edge.values()))][1]
-
+        return [sum(i) for i in zip(*list(self.edge.values()))][1]
 
 
 def cycle_rem(new_path):
     i = 0
     selected = []
-    while i<len(new_path):
+    while i < len(new_path):
         selected.append(new_path[i])
-        if new_path[i] in new_path[i+1:]:
-            i = i + (new_path[i+1:].index(new_path[i])) + 1
+        if new_path[i] in new_path[i + 1:]:
+            i = i + (new_path[i + 1:].index(new_path[i])) + 1
         i += 1
     return selected
+
+
+def get_top_routing_nodes(G, required_number_of_top_level_nodes):
+    from operator import itemgetter
+    return sorted([(node, val) for (node, val) in G.degree()], key=itemgetter(1), reverse=True)[
+           :required_number_of_top_level_nodes]
+
+
+def igraph_get_top_routing_nodes(G, required_number_of_top_level_nodes):
+    from operator import itemgetter
+    return sorted([(node, val) for (node, val) in zip(G.vs.indices, G.vs.degree())], key=itemgetter(1), reverse=True)[
+           :required_number_of_top_level_nodes]
+
+
+def connect_all_top_nodes_criss_cross(G, top_nodes):
+    import itertools
+    G.add_edges_from(list(itertools.combinations([node for (node, val) in top_nodes], 2)))
+
+def igraph_connect_all_top_nodes_criss_cross(G, top_nodes):
+    import itertools
+    G.add_edges(list(itertools.combinations(top_nodes, 2)))
