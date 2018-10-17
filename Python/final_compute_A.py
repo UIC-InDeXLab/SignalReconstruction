@@ -2,7 +2,8 @@ import numpy as np
 import igraph
 import time
 from the_traffic_magic import get_pareto_traffic_one
-from helper_scratch import igraph_get_top_routing_nodes, igraph_connect_all_top_nodes_criss_cross
+from helper_scratch import igraph_get_top_routing_nodes, \
+    igraph_connect_all_top_nodes_criss_cross, go_write_partial_a_and_b
 
 
 def write_A_matrix(graph_file_name, A_matrix_file_name, b_vector_file_name, gravity_vector_file_name):
@@ -56,6 +57,8 @@ def write_A_matrix(graph_file_name, A_matrix_file_name, b_vector_file_name, grav
     G.es["sd_pairs"] = ""
     G.es["edge_traffic"] = "0"
 
+    # write_head = 50000000
+    write_head = 500
     output_file_gravity = open(gravity_vector_file_name, "w")
     gravity = []
     for n_1 in non_routing_nodes:
@@ -87,6 +90,9 @@ def write_A_matrix(graph_file_name, A_matrix_file_name, b_vector_file_name, grav
                 s_d_pair_index += 1
         output_file_gravity.write('\n'.join(gravity))
         gravity = []
+        if s_d_pair_index > write_head:
+            # write_head = go_write_partial_a_and_b(G, write_head, s_d_pair_index, 'partial_results', 50000000)
+            write_head = go_write_partial_a_and_b(G, write_head, s_d_pair_index, 'partial_results', 500)
     if len(gravity) > 0:
         output_file_gravity.write('\n'.join(gravity))
 
@@ -105,5 +111,5 @@ def write_A_matrix(graph_file_name, A_matrix_file_name, b_vector_file_name, grav
     b_file.close()
 
 # write_A_matrix("test_graph.txt", "a.csv", 'b.csv', 'gravity.csv')
-# write_A_matrix("p2p-Gnutella04_Nodes_10876_edges_39994.txt", "a_gnutella_.csv", 'b_gnutella.csv','gravity_gnutella.csv')
-write_A_matrix("web_Google_Nodes_875713_Edges_5105039.txt", "a_google.csv", 'b_google.csv','gravity_google.csv')
+write_A_matrix("p2p-Gnutella04_Nodes_10876_edges_39994.txt", "a_gnutella_.csv", 'b_gnutella.csv','gravity_gnutella.csv')
+# write_A_matrix("web_Google_Nodes_875713_Edges_5105039.txt", "a_google.csv", 'b_google.csv','gravity_google.csv')

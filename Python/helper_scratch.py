@@ -99,3 +99,18 @@ def connect_all_top_nodes_criss_cross(G, top_nodes):
 def igraph_connect_all_top_nodes_criss_cross(G, top_nodes):
     import itertools
     G.add_edges(list(itertools.combinations(top_nodes, 2)))
+
+
+def go_write_partial_a_and_b(G, write_head, s_d_pair_index, partial_results, write_increment):
+    output_a_file = open(partial_results + '_A_upto_' + str(s_d_pair_index) + '.csv', "w")
+    output_a_file.write(str(G.ecount()) + "," + str(s_d_pair_index) + "\n")
+    b_file = open(partial_results + '_b_upto_' + str(s_d_pair_index) + '.csv', "w")
+
+    for edge in G.es:
+        output_a_file.write(str(edge.index) + '\t' + edge["sd_pairs"][:-1] + "\n")
+        b_file.write(edge["edge_traffic"] + "\n")
+    output_a_file.close()
+    b_file.close()
+    new_write_head = write_head + write_increment
+    G.es["sd_pairs"] = ""
+    return new_write_head
