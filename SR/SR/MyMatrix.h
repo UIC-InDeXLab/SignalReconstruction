@@ -10,6 +10,7 @@ using namespace std;
 #include <fstream>
 #include <sstream>
 #include <cmath>
+#include <algorithm>
 
 class Cell
 {
@@ -60,9 +61,10 @@ public:
 			while (ss)
 			{
 				if (!getline(ss, s, ',')) break;
-				rows[i].push_back(stoi(s));
+				rows[i].push_back(stoi(s)-1);
 				//record.push_back(s);
 			}
+			sort(rows[i].begin(), rows[i].end());
 			//data.push_back(record);
 			i++;
 		}
