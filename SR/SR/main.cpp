@@ -3,6 +3,7 @@ using namespace std;
 #include <ctime>
 #include <fstream>
 #include <iterator>
+#include <cstring>
 
 #include "Direct.h"
 
@@ -38,7 +39,7 @@ int main(int argc, char *argv[])
 	float * x = Direct(A, b, xp,exact,threshold);
 	clock_t end = clock();
 	double time = double(end - begin) / CLOCKS_PER_SEC;
-	cout << endl << n << ", " << m << ", " << exact << ", " << time;
+	cout << n << ", " << m << ", " << exact << ", " << time << endl;
 
 	if (outputfile != "")
 	{
