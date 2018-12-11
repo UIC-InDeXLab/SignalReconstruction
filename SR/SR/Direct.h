@@ -32,7 +32,7 @@ float * Dynamic_Direct(BMatrix A, float* b, float* xp, bool exact = true, float 
 	int i;
 	n = A.n; m = A.m;
 	sig = new vector<pair<int, float> >[A.n];
-	float* diameter = new float[A.n];
+	diameter = new float[A.n];
 	Matrix t = AAT(A, exact, th);
 	float* t2 = Sub(Mul(A, xp), b, n);
 	float* tmp = new float[n];

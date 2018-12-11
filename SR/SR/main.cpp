@@ -7,7 +7,6 @@ using namespace std;
 
 #include "Direct.h"
 
-/*
 int main(int argc, char *argv[])
 {
 	int i;
@@ -60,8 +59,8 @@ int main(int argc, char *argv[])
 	//getchar();
 	return 0;
 }
-*/
 
+/*
 int main(int argc, char *argv[])
 {
 	int i;
@@ -97,10 +96,15 @@ int main(int argc, char *argv[])
 	cout << "read c" << endl;
 
 	clock_t begin = clock();
-	float * x = Direct(A, b, xp, exact, threshold);
+	//float * x = Direct(A, b, xp, exact, threshold);
+	float* x = Dynamic_Direct(A, b, xp, exact, threshold);
 	clock_t end = clock();
-	double time = double(end - begin) / CLOCKS_PER_SEC;
-	cout << n << ", " << m << ", " << exact << ", " << time << endl;
+	double t2, t1 = double(end - begin) / CLOCKS_PER_SEC;
+	begin = clock();
+	x = Dynamic_Update(A, b, xp, exact, threshold);
+	end = clock();
+	t2 = double(end - begin) / CLOCKS_PER_SEC;
+	cout << n << ", " << m << ", " << exact << ", " << t1 << ", " << t2 << endl;
 
 	if (outputfile != "")
 	{
@@ -114,6 +118,7 @@ int main(int argc, char *argv[])
 	getchar();
 	return 0;
 }
+*/
 
 /* Use this for test
 int main(int argc, char *argv[])
