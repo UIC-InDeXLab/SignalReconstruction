@@ -37,7 +37,7 @@ public:
 		m = number_of_columns;
 		rows = new vector<int>[n];
 	}
-	BMatrix(string filename)
+	BMatrix(string filename, bool IndexFromZero=true)
 	{
 		vector <vector <string> > data;
 		ifstream infile(filename.c_str());
@@ -55,16 +55,21 @@ public:
 				getline(ss, s, ',');
 				m = stoi(s);
 				rows = new vector<int>[n];
+				//cout << "read the dimensiones: "<<n<<", "<<m << endl;
+				//getchar();
 				continue;
 			}
 			vector <string> record;
 			while (ss)
 			{
 				if (!getline(ss, s, ',')) break;
-				rows[i].push_back(stoi(s)-1);
+				//cout << "reading " << s << endl;
+				if (IndexFromZero==true) rows[i].push_back(stoi(s));
+				else rows[i].push_back(stoi(s)-1);
 				//record.push_back(s);
 			}
 			sort(rows[i].begin(), rows[i].end());
+			//cout << "read the line" << i<< endl;
 			//data.push_back(record);
 			i++;
 		}

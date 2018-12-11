@@ -21,6 +21,42 @@ float * Direct(BMatrix A, float* b, float* xp, bool exact = true, float th=0)
 }
 
 
+// The following attributes are only used in the dynamic direct
+vector<pair<int, float> >* sig;
+float* diameter;
+int n, m;
+
+float * Dynamic_Direct(BMatrix A, float* b, float* xp, bool exact = true, float th = 0)
+{
+	// call this, only if A has changed
+	int i;
+	n = A.n; m = A.m;
+	sig = new vector<pair<int, float> >[A.n];
+	float* diameter = new float[A.n];
+	Matrix t = AAT(A, exact, th);
+	float* t2 = Sub(Mul(A, xp), b, n);
+	float* tmp = new float[n];
+	GenerateSignature(t, sig, diameter);
+	SolveBySigint(n, sig, diameter, t2, tmp);
+	//int flag = Solve(t, t2, tmp);
+	float* tmp2 = Mul(Transpose(A), tmp);
+	return Sub(xp, Mul(Transpose(A), tmp), m);
+}
+
+float * Dynamic_Update(BMatrix A, float* b, float* xp, bool exact = true, float th = 0)
+{
+	// call this, as long as A has not changed
+	int i;
+	float* t2 = Sub(Mul(A, xp), b, n);
+	float* tmp = new float[n];
+	SolveBySigint(n, sig, diameter, t2, tmp);
+	//int flag = Solve(t, t2, tmp);
+	float* tmp2 = Mul(Transpose(A), tmp);
+	return Sub(xp, Mul(Transpose(A), tmp), m);
+}
+
+
+
 /* Direct - Exact Unit Test
 int main()
 {
