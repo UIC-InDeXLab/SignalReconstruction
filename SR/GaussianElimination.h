@@ -1,6 +1,5 @@
 // Abolfazl Asudeh; http://asueh.github.io
-// Gaussian Elimination method for solving Ax=b
-// The code is a modification from https://www.geeksforgeeks.org/program-for-gauss-jordan-elimination-method/
+// The Gaussian Elimination part is a modification from https://www.geeksforgeeks.org/program-for-gauss-jordan-elimination-method/
 
 using namespace std;
 #include<iostream>
@@ -76,7 +75,7 @@ int GenerateSignature(Matrix A, vector<pair<int,float> >* sig, float* diameter) 
 	int n = A.n, i, j, k = 0, kp = 0, c, flag = 0, m = 0;
 	float pro = 0;
 	int* pointers = new int[n];
-	for (i = 0; i < n; i++) pointers[i] = 0;
+	for (i = 0; i < n; i++) pointers[i] = 0; // start each row from the beginning
 
 	// Performing elementary operations 
 	for (i = 0; i < n; i++)
@@ -130,7 +129,7 @@ int GenerateSignature(Matrix A, vector<pair<int,float> >* sig, float* diameter) 
 	return flag;
 }
 
-void SolveBySigint(int n, vector<pair<int, float> >* sig, float* diameter, float* b, float* result) // Generates the signature matrix for solving Ax = b
+void SolveBySigint(int n, vector<pair<int, float> >* sig, float* diameter, float* b, float* result)
 {
 	// Sig matrix is the transpose of what proposed in the paper
 	int i, j, k;
