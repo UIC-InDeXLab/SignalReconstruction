@@ -3,7 +3,13 @@
 
 using namespace std;
 #include<iostream>
+
+#ifndef MyMatrix
+#define MyMatrix
 #include "MyMatrix.h"
+#endif
+//#include "MyMatrix.h"
+
 
 int Solve(Matrix A, float* b, float* result) // solves the equation Ax = b
 {

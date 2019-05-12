@@ -2,7 +2,7 @@
     "configurations": [
         {
             "name": "Win32",
-            "compilerPath": "C:/Program Files/Mingw-w64/bin/g++.exe",
+            "compilerPath": "C:/Mingw-w64/bin/g++.exe",
             "defines": [
                 "_DEBUG",
                 "UNICODE",
@@ -17,9 +17,20 @@
                 "databaseFilename": ""
             },
             "includePath": [
-                "C:/Program Files/Mingw-w64/include/c++/4.8.3",
-                "C:/Program Files/Mingw-w64/include"
-            ]
+                "C:/Mingw-w64/include/c++/4.8.3",
+                "C:/Mingw-w64/include",
+                "C:/Mingw-w64/include/c++/4.8.3/tr1",
+                "C:/Mingw-w64/include/c++/4.8.3/tr2",
+                "C:/Mingw-w64/include/c++/4.8.3/profile",
+                "C:/Mingw-w64/include/c++/4.8.3/parallel",
+                "C:/Mingw-w64/include/c++/4.8.3/ext",
+                "C:/Mingw-w64/include/c++/4.8.3/decimal",
+                "C:/Mingw-w64/include/c++/4.8.3/debug",
+                "C:/Mingw-w64/include/c++/4.8.3/bits",
+                "C:/Mingw-w64/include/c++/4.8.3/backward"
+            ],
+            "cppStandard": "c++11",
+            "cStandard": "c99"
         }
     ],
     "version": 4

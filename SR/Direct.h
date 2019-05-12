@@ -9,6 +9,7 @@ using namespace std;
 
 #include "GaussianElimination.h"
 
+
 float * Direct(BMatrix A, float* b, float* xp, bool exact = true, float th=0)
 {
 	int n = A.n, m = A.m, i;

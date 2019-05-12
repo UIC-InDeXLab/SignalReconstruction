@@ -11,7 +11,7 @@
                 "SR",
                 "main.cpp",
                 "*.h",
-                "-std=c++11",  // Tag to compile as c++11
+                "-std=c++0x"
             ],
             "group": {
                 "kind": "build",

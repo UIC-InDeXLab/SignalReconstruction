@@ -3,7 +3,11 @@
 
 using namespace std;
 #include<iostream>
+
+#ifndef MyMatrix
+#define MyMatrix
 #include "MyMatrix.h"
+#endif
 
 
 
@@ -12,7 +16,7 @@ void GenerateLUSig(Matrix A, Matrix& LU) // Generates the signature matrix for s
 	// Sig matrix is the transpose of what proposed in the paper
 	int n = A.n, m = A.m;
     //lu = new double[n, n];
-    LU = Matrix(n,n);
+    //LU = Matrix(n,n);
     float sum = 0.;
     for (int i = 0; i < n; i++)
     {
