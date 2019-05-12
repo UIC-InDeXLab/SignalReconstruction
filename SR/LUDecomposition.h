@@ -13,7 +13,7 @@ void GenerateLUSig(Matrix A, Matrix& LU) // Generates the signature matrix for s
 	int n = A.n, m = A.m;
     //lu = new double[n, n];
     LU = Matrix(n,n);
-    float sum = 0;
+    float sum = 0.;
     for (int i = 0; i < n; i++)
     {
         for (int j = i; j < n; j++)
@@ -28,7 +28,7 @@ void GenerateLUSig(Matrix A, Matrix& LU) // Generates the signature matrix for s
             sum = 0;
             for (int k = 0; k < i; k++)
                 sum += LU.GetValue(j, k) * LU.GetValue(k, i);
-            lLU.SetValue(j, i, (1 / lu[i, i]) * (matrix[j, i] - sum));
+            LU.SetValue(j, i, (1 / LU.GetValue(i, i)) * (A.GetValue(j, i) - sum));
         }
     }
 }
@@ -36,6 +36,7 @@ void GenerateLUSig(Matrix A, Matrix& LU) // Generates the signature matrix for s
 void SolveByLUSig(int n, Matrix lu, float* b, float* result)
 {
     float* y = new float[n];
+    float sum=0.;
     for (int i = 0; i < n; i++)
     {
         sum = 0;
@@ -51,7 +52,7 @@ void SolveByLUSig(int n, Matrix lu, float* b, float* result)
             sum += lu.GetValue(i, k) * result[k];
         result[i] = (1 / lu.GetValue(i, i)) * (y[i] - sum);
     }
-    return result;
+//    return result;
 }
 
 

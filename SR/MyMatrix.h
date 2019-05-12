@@ -145,7 +145,7 @@ public:
 		// do not assume that the indices are sorted
 		for(int k=0;k<rows[i].size();k++)
 			if(rows[i][k].index==j) rows[i][k].value = value;
-		rows[i].push_back(pair<int, float>(j, value));; // did not find this index; i.e., this cell has the value 0 and therefore did not get stored
+		rows[i].push_back(Cell(j, value)); // did not find this index; i.e., this cell has the value 0 and therefore did not get stored
 	}
 };
 
