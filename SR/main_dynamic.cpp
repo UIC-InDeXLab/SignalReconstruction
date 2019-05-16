@@ -14,7 +14,7 @@ int main(int argc, char *argv[])
 {
 	int i;
 	string folder = "data/861/";
-	bool exact = true, startfromzero = true;
+	bool exact = true, startfromzero = true; // startfromzero indicates if the indices in matrix A start from zero or one
 	int threshold = 2;
 	string outputfile = "";
 
@@ -33,7 +33,6 @@ int main(int argc, char *argv[])
 				exact = false;
 		}
 	cout << "about to read a" << endl;
-	startfromzero = false; // DELETE THIS!!!!
 	BMatrix A(folder + "a.txt", startfromzero); // for the small settings, we have the indices starting from 1
 	cout << "read a" << endl;
 	int n = A.n, m = A.m;

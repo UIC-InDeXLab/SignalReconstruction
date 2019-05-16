@@ -87,15 +87,14 @@ flag = Solve(A, b, results);
 cout << endl << "----Results------" << endl;
 for (int i = 0; i < 3; i++) cout << results[i] << ", ";
 
-// generate the signature matrix
-vector<pair<int, float> >* sig = new vector<pair<int, float> >[A.n];
-float* diameter = new float[A.n];
-GenerateSignature(A, sig, diameter);
-SolveBySigint(A.n, sig, diameter, b, results);
+// generate the LU signature matrix
+Matrix LUSig(3, 3);
+GenerateLUSig(A, LUSig);
+SolveByLUSig(n, LUSig, b, results);
 cout << endl << "----Results------" << endl;
 for (int i = 0; i < 3; i++) cout << results[i] << ", ";
 cout << endl << "Done!" << endl;
-getchar();
+//getchar();
 return 0;
 }
 //The result should be 2.2, 1.4, 1.2

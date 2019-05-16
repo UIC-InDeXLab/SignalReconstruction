@@ -147,6 +147,12 @@ public:
 			if(rows[i][k].index==j) rows[i][k].value = value;
 		rows[i].push_back(Cell(j, value)); // did not find this index; i.e., this cell has the value 0 and therefore did not get stored
 	}
+	int size()
+	{
+		int size =0;
+		for(int i=0; i<n;i++) size+=rows[i].size();
+		return size;
+	}
 };
 
 float* Mul(BMatrix A, float* b)
