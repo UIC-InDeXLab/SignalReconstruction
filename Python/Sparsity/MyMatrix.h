@@ -96,14 +96,11 @@ public:
 	void print(bool printSparse=false)
 	{
 		int i, j, k;
-		int c = 0;
-                //cout << n << endl;
-                //cout << m << endl;
-		//cout << printSparse << endl;
 		cout << endl << "---------- A ------------" << endl;
                 
 		if (!printSparse)
 		{
+			int l=0;
 			for (i = 0; i < n; i++) l+=rows[i].size();
 			cout << endl;
 			cout << l << endl;
@@ -113,10 +110,8 @@ public:
 			for (i = 0; i < n; i++)
 			{
 				for (j = 0; j < rows[i].size(); j++)
-					//cout << rows[i][j].index << ":" << rows[i][j].value << "; ";
-					if (rows[i][j].value  > 0)
-						c++;
-				//cout << endl;
+					cout << rows[i][j].index << ":" << rows[i][j].value << "; ";
+				cout << endl;
 			}
 		}
 		cout << "----------------------" << endl;
