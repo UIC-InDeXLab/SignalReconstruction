@@ -101,24 +101,10 @@ public:
                 //cout << m << endl;
 		//cout << printSparse << endl;
 		cout << endl << "---------- A ------------" << endl;
-                int l = 0;
+                
 		if (!printSparse)
 		{
-			for (i = 0; i < n; i++)
-			{
-				k = 0;
-				for (j = 0; j < m; j++)
-					//if (k == rows[i].size() || rows[i][k].index > j) cout << "0, ";
-					if (k == rows[i].size() || rows[i][k].index > j) ;
-					else
-					{
-						//cout << rows[i][k].value << ", ";
-						k++;
-			
-						if (rows[i][k].value > 0 ) l++;
-					}
-				//cout << endl;
-			}
+			for (i = 0; i < n; i++) l+=rows[i].size();
 			cout << endl;
 			cout << l << endl;
 		}
