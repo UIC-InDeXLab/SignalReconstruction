@@ -1,8 +1,28 @@
 {
     "version": "0.2.0",
-     "configurations": [
+     "configurations": [ 
+        {
+            "name": "LUComp",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/LUComp.exe",
+            "args": [],
+            "stopAtEntry": true,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "miDebuggerPath": "C:/Mingw-w64/bin/gdb.exe",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        },
          {
-             "name": "(gdb) Launch",
+             "name": "main",
              "type": "cppdbg",
              "request": "launch",
              "program": "${workspaceFolder}/SR.exe",

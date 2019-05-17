@@ -17,6 +17,23 @@
                 "kind": "build",
                 "isDefault": true
             }
+        },
+        {
+            "label": "build LUComp",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                "-g",
+                "-o",
+                "LUComp",
+                "LUCompare.cpp",
+                "*.h",
+                "-std=c++0x"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
         }
     ]
 }

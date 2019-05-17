@@ -70,6 +70,9 @@ int main(int argc, char *argv[])
     end = clock();
     double time2 = double(end - begin) / CLOCKS_PER_SEC;
 
+	cout << n << ", " << m << ", " << exact <<endl;
+    cout << "Sig. time to ge:" << time1 << ", time to solve:" << time2 <<", size:"<<size1<< endl;
+
     cout<<"started GenerateLUSig(..)"<<endl;  
     Matrix LUSig(n, n);  
     begin = clock();
@@ -83,9 +86,7 @@ int main(int argc, char *argv[])
     SolveByLUSig(n, LUSig, b, tmp);
     end = clock();
     double time4 = double(end - begin) / CLOCKS_PER_SEC;
-    
-	cout << n << ", " << m << ", " << exact <<endl;
-    cout << "Sig. time to ge:" << time1 << ", time to solve:" << time2 <<", size:"<<size1<< endl;
+
     cout << "LUSig. time to ge:" << time3 << ", time to solve:" << time4 <<", size:"<<size2<< endl;
 
 	//getchar();
