@@ -26,45 +26,34 @@ int main(int argc, char *argv[])
         int n = A.n, m = A.m;
         if (threshold == -1)
                threshold = log(A.m);
-        float* b = ReadVector(folder + "b.txt", n);
-        cout << "read b" << endl;
-
-        float* xp = ReadVector(folder + "xp.txt", m);
-        cout << "read c" << endl;
  
-        clock_t begin = clock();
+	cout << n << endl;
+	cout << m << endl;
+
         Matrix t = AAT(A, true, 0);
         t.print(false);
 
-        t = AAT(A, false, 2);
-        t.print(false);
+        Matrix t1 = AAT(A, false, 2);
+        t1.print(false);
 
-        t = AAT(A, false, 3);
-        t.print(false);
+        Matrix t2 = AAT(A, false, 3);
+        t2.print(false);
 
-        t = AAT(A, false, 4);
-        t.print(false);
+        Matrix t3 = AAT(A, false, 4);
+        t3.print(false);
 
-        t = AAT(A, false, 5);
-        t.print(false);
+        Matrix t4 = AAT(A, false, 5);
+        t4.print(false);
 
-        t = AAT(A, false, 6);
-        t.print(false);
+        Matrix t5 = AAT(A, false, 6);
+        t5.print(false);
 
-        t = AAT(A, false, 7);
-        t.print(false);
+        Matrix t6 = AAT(A, false, 7);
+        t6.print(false);
 
-        t = AAT(A, false, 8);
-        t.print(false);
+        Matrix t7 = AAT(A, false, 8);
+        t7.print(false);
 
-        t = AAT(A, false, 9);
-        t.print(false);
-	//int w = 0;
-        //for (int a = 0; a< y ; a++ ){
-	//	for (int j = 0; j < z; j++){
-	//		if (t[a][j] == 0)
-	//			w++;
-	//	}
-	//}
-	//cout << w << endl;
+        Matrix t8 = AAT(A, false, 9);
+        t8.print(false);
 }
