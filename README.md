@@ -1,4 +1,4 @@
-# SignalReconstruction
+# ORCA: SignalReconstruction
 The project contains the code for the signal reconstruction at Scale project.
 
 
