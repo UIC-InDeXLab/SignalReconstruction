@@ -8,7 +8,6 @@ The project contains the code for the signal reconstruction at Scale project.
 
 2- The Python folder contains the code for generating the inputs to the algorithm.
 
-Contact Abolfazl Asudeh or Jees Augustine if you have any questions.
 
 ## Publications to cite:
 [1] Abolfazl Asudeh, Azade Nazi, Jees Augustine, Saravanan Thirumuruganathan, Nan Zhang, Gautam Das, Divesh Srivastava. Leveraging similarity joins for signal reconstruction. PVLDB, Vol. 11(10), pages 1276--1288, 2018, VLDB Endowment.
