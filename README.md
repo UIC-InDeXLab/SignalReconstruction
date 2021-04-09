@@ -13,6 +13,7 @@ The project contains the code for the signal reconstruction at Scale project.
 [1] Abolfazl Asudeh, Azade Nazi, Jees Augustine, Saravanan Thirumuruganathan, Nan Zhang, Gautam Das, Divesh Srivastava. Leveraging similarity joins for signal reconstruction. PVLDB, Vol. 11(10), pages 1276--1288, 2018, VLDB Endowment.
 
 [2] (Journal Version) Abolfazl Asudeh, Azade Nazi, Jees Augustine, Saravanan Thirumuruganathan, Nan Zhang, Gautam Das, Divesh Srivastava. Scalable Algorithms for Signal Reconstruction by Leveraging Similarity Joins. VLDB Journal, Vol. 29, pages 681-707, 2020, Special Issue on best of VLDB'18. 
+* the code is the implementation used in this (Journal version) paper. It contains the scalability and dynamic updates features.
 
 [3] (Invited Paper) Abolfazl Asudeh, Azade Nazi, Jees Augustine, Saravanan Thirumuruganathan, Nan Zhang, Gautam Das, Divesh Srivastava. Efficient Signal Reconstruction for a Broad Range of Applications. SIGMOD, 2019, Special Issue on 2018 ACM SIGMOD Research Highlights.
 
